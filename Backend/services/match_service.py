@@ -1,40 +1,20 @@
 import pdfplumber
-import requests
-import os
+import google.generativeai as genai
 import  json
+import os
+from dotenv import load_dotenv
 
-HF_TOKEN = os.getenv("HF_TOKEN")
+load_dotenv()
+genai.configure(api_key=os.getenv("GENMINI_API_KEY")
+model = genai.GenerativeModel("gemini-2.5-flash")
 
-API_URL = "https://router.huggingface.co/v1/chat/completions"
-
-headers = {
-    "Authorization": f"Bearer {HF_TOKEN}",
-    "Content-Type": "application/json"
-}
 
 class MatchService:
     def ask_llm(self, prompt):
 
-        payload = {
-            "model": "Qwen/Qwen2.5-3B-Instruct",
-            "messages": [
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ],
-            "max_tokens": 300
-        }
+        response = model.generate_content(prompt)
     
-        response = requests.post(
-            API_URL,
-            headers=headers,
-            json=payload
-        )
-    
-        response.raise_for_status()
-    
-        return response.json()["choices"][0]["message"]["content"]
+        return respose.text
 
 
     def extract_text(self,pdf_path):
