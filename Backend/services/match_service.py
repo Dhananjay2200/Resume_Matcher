@@ -12,7 +12,8 @@ headers = {
     "Content-Type": "application/json"
 }
 
-def ask_llm(self, prompt):
+class MatchService:
+    def ask_llm(self, prompt):
 
     payload = {
         "model": "Qwen/Qwen2.5-3B-Instruct",
@@ -35,7 +36,7 @@ def ask_llm(self, prompt):
 
     return response.json()["choices"][0]["message"]["content"]
 
-class MatchService:
+
     def extract_text(self,pdf_path):
         text = ""
         with pdfplumber.open(pdf_path) as pdf:
