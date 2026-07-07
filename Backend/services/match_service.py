@@ -15,26 +15,26 @@ headers = {
 class MatchService:
     def ask_llm(self, prompt):
 
-    payload = {
-        "model": "Qwen/Qwen2.5-3B-Instruct",
-        "messages": [
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
-        "max_tokens": 300
-    }
-
-    response = requests.post(
-        API_URL,
-        headers=headers,
-        json=payload
-    )
-
-    response.raise_for_status()
-
-    return response.json()["choices"][0]["message"]["content"]
+        payload = {
+            "model": "Qwen/Qwen2.5-3B-Instruct",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            "max_tokens": 300
+        }
+    
+        response = requests.post(
+            API_URL,
+            headers=headers,
+            json=payload
+        )
+    
+        response.raise_for_status()
+    
+        return response.json()["choices"][0]["message"]["content"]
 
 
     def extract_text(self,pdf_path):
