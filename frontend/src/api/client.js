@@ -3,7 +3,7 @@ import axios from "axios";
 // The backend URL can be overridden at build time with a .env file:
 //   VITE_API_URL=http://localhost:8000
 // Falls back to localhost:8000, which is where `uvicorn main:app` runs by default.
-const BASE_URL = import.meta.env.VITE_API_URL || "https://resume-matcher-backend-e87p.onrender.com";
+const BASE_URL = import.meta.env.VITE_API_URL || "https://resume-matcher-backend-4nph.onrender.com";
 
 const client = axios.create({
   baseURL: BASE_URL,
